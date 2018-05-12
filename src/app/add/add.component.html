@@ -1,0 +1,70 @@
+<div>
+    <div class="form-group">
+      <label for="tipo">Tipo da Despesa</label>
+      <select [(ngModel)]="despesa.tipo" id="tipo" class="form-control" required
+      #tipo="ngModel">
+        <option value=""></option>
+        <option value="Mercado">Mercado</option>
+        <option value="Lazer">Lazer</option>
+        <option value="Saúde">Saúde</option>
+      </select>
+    </div>
+    <div *ngIf="tipo.invalid  && (tipo.dirty || tipo.touched)"
+     class="alert alert-danger">
+      <div *ngIf="tipo.errors.required">
+        Tipo é obrigatório.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="nome">Nome da Despesa</label>
+      <input type="text" [(ngModel)]="despesa.nome" id="nome"
+      required minlength="4"
+      #nome="ngModel"
+      placeholder="Digite o nome..." class="form-control">
+		</div>
+
+    <div *ngIf="nome.invalid  && (nome.dirty || nome.touched)"
+     class="alert alert-danger">
+
+      <div *ngIf="nome.errors.required">
+        Nome é obrigatório.
+      </div>
+      <div *ngIf="nome.errors.minlength">
+        Nome deve ter pelo menos 4 caracteres.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="data">Data da Despesa</label>
+      <div class="input-group">
+        <div class="input-group-addon"><span class="glyphicon glyphicon-time"></span></div>
+        <input type="date" [(ngModel)]="despesa.data" id="data" class="form-control" required>
+      </div>
+    </div>
+		<div class="form-group">
+      <label for="valor">Valor da Despesa</label>
+      <div class="input-group">
+        <div class="input-group-addon">R$</div>
+        <input type="number" [(ngModel)]="despesa.valor"
+        id="valor" class="form-control text-right"
+        required placeholder="Digite o valor..."
+        #valor="ngModel" min="0">
+			</div>
+
+      <div *ngIf="valor.invalid  && (valor.dirty || valor.touched)"
+       class="alert alert-danger">
+
+        <div *ngIf="valor.errors.required">
+          Valor é obrigatório.
+        </div>
+        <div *ngIf="valor.errors.min">
+          O valor deve ser de pelo menos 1 real.
+        </div>
+      </div>
+
+      <div class="form-group">
+          <button class="btn btn-primary" (click)="save()"><div class="glyphicon glyphicon-usd"></div> Salvar despesa</button>
+      </div>
+    </div>
+</div>

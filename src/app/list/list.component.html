@@ -1,0 +1,41 @@
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Tipo</th>
+        <th>Data</th>
+        <th>Nome</th>
+        <th>Valor</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let despesa of despesas">
+        <td>
+          <div *ngIf="despesa.tipo == 'Mercado'"
+               class="glyphicon glyphicon-shopping-cart">
+          </div>
+          <div *ngIf="despesa.tipo == 'Saúde'"
+               class="glyphicon glyphicon-heart-empty">
+          </div>
+          <div *ngIf="despesa.tipo == 'Lazer'"
+               class="glyphicon glyphicon-knight">
+          </div>
+          {{despesa.tipo}}
+        </td>
+        <td>{{despesa.data | amTimeAgo }}</td>
+        <td>{{despesa.nome}}</td>
+        <td>{{despesa.valor | currency:'R$ ':true:'1.2-2' | decimalBr }}</td>
+        <td>
+          <button class="btn btn-danger" (click)="delete(despesa)">
+            <div class="glyphicon glyphicon-trash"></div>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<button class="btn  btn-primary" (click)="add()">
+  <div class="glyphicon glyphicon-plus"></div>
+  Adicionar despesa
+</button>
